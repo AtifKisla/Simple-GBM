@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv(r"C:\Users\ATIF\Downloads\archive (3)\amazon.csv")
+df = pd.read_csv("amazon.csv")
 
 print(df.head())
 print(df.shape)
