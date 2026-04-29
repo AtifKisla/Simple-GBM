@@ -137,3 +137,26 @@ print(classification_report(y_test, gbm_preds))
 importance = pd.Series(gbm.feature_importances_, index=X.columns)
 print("\nFeature Importance:")
 print(importance.sort_values(ascending=False))
+
+# ======================
+# STEP 10: XGBOOST
+# ======================
+
+from xgboost import XGBClassifier
+
+xgb = XGBClassifier(
+    n_estimators=100,
+    max_depth=3,
+    learning_rate=0.1,
+    random_state=42,
+    use_label_encoder=False,
+    eval_metric='logloss'
+)
+
+xgb.fit(X_train, y_train)
+
+xgb_preds = xgb.predict(X_test)
+
+from sklearn.metrics import accuracy_score
+
+print("XGBoost Accuracy:", accuracy_score(y_test, xgb_preds))
