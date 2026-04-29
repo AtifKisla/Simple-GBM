@@ -1,5 +1,3 @@
-# Simple-GBM
-
 
 Bu skor median değerine göre iki sınıfa ayrılmıştır:
 
@@ -10,7 +8,7 @@ Bu skor median değerine göre iki sınıfa ayrılmıştır:
 
 ## ⚠️ Data Leakage Analizi
 
-İlk modelde `rating` ve `rating_count` kullanıldığı için çok yüksek doğruluk (%99) elde edilmiştir.
+İlk modelde `rating` ve `rating_count` kullanıldığı için %99 doğruluk elde edilmiştir.
 
 Ancak bu durum **data leakage** olarak değerlendirilmiştir çünkü hedef değişken bu özelliklerden türetilmiştir.
 
@@ -19,14 +17,15 @@ Bu nedenle:
 - `rating`
 - `rating_count`
 
-modelden çıkarılmış ve gerçekçi bir model kurulmuştur.
+modelden çıkarılmış ve daha gerçekçi bir model kurulmuştur.
 
 ---
 
 ## 🤖 Kullanılan Modeller
 
 - Logistic Regression (baseline)
-- Gradient Boosting Machine (GBM)
+- Gradient Boosting Classifier (GBM)
+- XGBoost (advanced boosting)
 
 ---
 
@@ -37,35 +36,36 @@ modelden çıkarılmış ve gerçekçi bir model kurulmuştur.
 - Logistic Regression: %96
 - GBM: %99
 
-### Leak kaldırıldıktan sonra:
+### Leak-free model:
 
 - Logistic Regression: %54
 - GBM: %68
+- XGBoost: %64
 
 ---
 
 ## 🔍 Önemli Bulgular
 
 - Fiyat ve indirim bilgileri tek başına sınırlı tahmin gücüne sahiptir
-- Ürün başarısında **kullanıcı etkileşimi (yorum sayısı)** kritik rol oynamaktadır
+- Ürün başarısında kullanıcı davranışları (yorumlar) kritik rol oynamaktadır
 - GBM, doğrusal modellere göre daha iyi performans göstermiştir
 
 ---
 
-## 💡 İş (Business) İçgörüleri
+## 💡 İş İçgörüleri
 
-- Kullanıcılar indirim oranlarına duyarlıdır
-- Nihai fiyat (discounted price) en önemli faktördür
-- Ancak gerçek başarıyı belirleyen ana unsur kullanıcı geri bildirimidir
+- Kullanıcılar nihai fiyata (discounted price) duyarlıdır
+- İndirim oranı satın alma davranışını etkiler
+- Ancak gerçek başarıyı belirleyen ana faktör kullanıcı etkileşimidir
 
 ---
 
 ## 🚀 Gelecek Çalışmalar
 
-- API kullanılarak gerçek zamanlı veri çekme
-- Yorum metinlerinden sentiment analizi ekleme
-- Daha gelişmiş modeller (XGBoost, LightGBM)
-- Hyperparameter tuning
+- API ile gerçek zamanlı veri entegrasyonu
+- Yorum metinlerinden sentiment analizi
+- Model tuning (hyperparameter optimization)
+- Daha büyük veri setleri ile test
 
 ---
 
@@ -75,9 +75,10 @@ modelden çıkarılmış ve gerçekçi bir model kurulmuştur.
 - Pandas
 - NumPy
 - Scikit-learn
+- XGBoost
 
 ---
 
 ## 📎 Not
 
-Bu proje eğitim ve öğrenme amaçlı yapılmıştır. Gerçek satış verisi bulunmadığı için başarı metriği tahmini olarak oluşturulmuştur.
+Bu proje eğitim amaçlı geliştirilmiştir. Gerçek satış verisi bulunmadığı için başarı metriği tahmini olarak oluşturulmuştur.
